@@ -5,10 +5,10 @@ module.exports = {
   colors: {
     baseBlue: {
       hue: 46920,
-      sat: 200
+      sat: 255
     },
     magenta: {
-      hue: 0,
+      hue: 65280,
       sat: 200
     },
     yellow: {

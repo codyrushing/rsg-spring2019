@@ -1,5 +1,6 @@
 const { updateGroup } = require('./bridge-api');
-const { iterate, pulseGroupLowToHigh } = require('./utils');
+const { iterate } = require('./utils');
+const { pulseGroupLowToHigh } = require('./actions');
 
 (async function(){
   try {
@@ -11,6 +12,8 @@ const { iterate, pulseGroupLowToHigh } = require('./utils');
     // back down to medium low
     await updateGroup({
       bri: 200,
+      holdHi: 3000,
+      holdLo: 3000,
       transitiontime: 10
     });
   }

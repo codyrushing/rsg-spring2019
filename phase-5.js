@@ -7,12 +7,13 @@ const { colors } = require('./config');
     await updateGroup({
       ...colors.baseBlue,
       bri: 50,
-      transitiontime: 0
+      transitiontime: 50
     });
     await updateGroup({
-      bri: 200,
-      transitiontime: 30
-    });
+      ...colors.baseBlue,
+      bri: 1,
+      transitiontime: 50
+    })
   }
   catch(err){
     console.error(err);

@@ -1,18 +1,28 @@
-const { updateLight, updateGroup } = require('./bridge-api');
-const { wait, iterate } = require('./utils');
+const child_process = require('child_process');
+const express = require('express');
+const app = express();
 
-const baseColor = {
-  hue: 0,
-  sat: 200
-};
+app.use(express.static(__dirname + '/public'));
 
+let subRoutine = null;
 
-(async function(){
-  try {
-    await require('./phase-1')();
-    process.exit();
+app.get(
+  '/api/routine/:routineId',
+  (req, res, next) => {
+    try {
+      if(subRoutine){
+        subRoutine.kill();
+      }
+      subRoutine = child_process.fork(`./${req.params.routineId}`);
+      subRoutine.on('exit', () => console.log(`${req.params.routineId} exited`));
+      console.log(`Started ${req.params.routineId}`);
+      res.json({status: 'success'});
+    }
+    catch(err){
+      console.error(err);
+      next(err);
+    }
   }
-  catch(err){
-    console.error(err);
-  }
-})();
+);
+
+app.listen(8888, () => console.log(`App listening on 8888`));

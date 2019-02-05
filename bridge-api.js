@@ -8,25 +8,35 @@ const waitForCompletion = async (transitiontime=4) => await wait(Math.round(tran
 
 module.exports = {
   updateGroup: async (payload, { exitEarly }={}) => {
-    const response = await axios.put(
-      `${API_ROOT}/groups/1/action`,
-      payload
-    );
-    if(exitEarly){
+    try {
+      const response = await axios.put(
+        `${API_ROOT}/groups/1/action`,
+        payload
+      );
+      if(exitEarly){
+        return response;
+      }
+      await waitForCompletion(payload.transitiontime);
       return response;
     }
-    await waitForCompletion(payload.transitiontime);
-    return response;
+    catch(err){
+      console.error(err);
+    }
   },
   updateLight: async (id, payload, { exitEarly }={}) => {
-    const response = await axios.put(
-      `${API_ROOT}/lights/${id}/state`,
-      payload,
-    );
-    if(exitEarly){
+    try {
+      const response = await axios.put(
+        `${API_ROOT}/lights/${id}/state`,
+        payload,
+      );
+      if(exitEarly){
+        return response;
+      }
+      await waitForCompletion(payload.transitiontime);
       return response;
     }
-    await waitForCompletion(payload.transitiontime);
-    return response;
+    catch(err){
+      console.error(err);
+    }
   }
 }
