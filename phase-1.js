@@ -2,8 +2,8 @@ const { updateGroup } = require('./bridge-api');
 const { wait } = require('./utils');
 
 const baseColor = {
-  hue: 0,
-  sat: 200
+  hue: 46920,
+  sat: 255
 };
 
 (async function(){
@@ -15,7 +15,7 @@ const baseColor = {
       transitiontime: 0
     });
     await updateGroup({
-      bri: 80,
+      bri: 200,
       transitiontime: 30
     });
   }
