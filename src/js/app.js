@@ -10,9 +10,7 @@ export default class App extends Component {
     };
   }
   startTimer(){
-    if(this.timer){
-      clearInterval(this.timer);
-    }
+    this.clearTimer();
     this.timer = setInterval(
       () => this.setState({
         elapsed: this.state.elapsed + 1
@@ -20,19 +18,36 @@ export default class App extends Component {
       1000
     );
   }
-  isActive(routine){
+  clearTimer(){
+    if(this.timer){
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+  isActive(routine, params){
     const { currentRoutine } = this.state;
     return {
       disabled: routine === currentRoutine,
-      onClick: this.onClickRoutineButton(routine)
+      onClick: this.onClickRoutineButton(routine, params)
     };
   }
-  onClickRoutineButton(routine){
+  onClickRoutineButton(routine, params={}){
+    const { stopClock, resetClock } = params;
     return async e => {
       e.preventDefault();
-      if(!this.timer){
+      if(stopClock){
+        this.clearTimer();
+        this.setState({
+          elapsed: 0
+        });
+      }
+      else if(resetClock){
         this.startTimer();
       }
+      else if(!this.timer){
+        this.startTimer();
+      }
+      // if(routine === '')
       await axios.get(`/api/routine/${routine}`);
       this.setState({
         currentRoutine: routine
@@ -52,7 +67,7 @@ export default class App extends Component {
           <p className="right">{min}:{sec}</p>
         </section>
         <section>
-          <button {...this.isActive('phase-0')}>Phase 0</button>
+          <button {...this.isActive('phase-0', { resetClock: true })}>Phase 0</button>
           <p>On. Mid low brightness.</p>
         </section>
         <section>
@@ -65,7 +80,7 @@ export default class App extends Component {
         <section>
           <button {...this.isActive('phase-2')}>Phase 2</button>
           <p>
-            <strong>1:08 </strong>
+            <strong>1:04 </strong>
             Carissa comes to crouch, sizzle sound in music.  Starts 4 second light pulses
           </p>
         </section>
@@ -91,7 +106,7 @@ export default class App extends Component {
           </p>
         </section>
         <section>
-          <button {...this.isActive('phase-off')}>Phase off</button>
+          <button {...this.isActive('phase-off', { stopClock: true })}>Phase off</button>
         </section>
 
       </main>

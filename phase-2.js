@@ -6,14 +6,17 @@ const { pulseGroupLowToHigh } = require('./actions');
   try {
     // pulse 5 times
     await iterate(
-      async (i) => await pulseGroupLowToHigh(),
+      async (i) => await pulseGroupLowToHigh({
+        transitionHi: 3000,
+        transitionLo: 3000,
+        holdHi: 1000,
+        holdLo: 1000,
+      }),
       5
     );
     // back down to medium low
     await updateGroup({
       bri: 200,
-      holdHi: 3000,
-      holdLo: 3000,
       transitiontime: 10
     });
   }
