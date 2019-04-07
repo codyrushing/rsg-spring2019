@@ -1,8 +1,8 @@
 const d3Scale = require('d3-scale');
-const { updateLight, updateGroup } = require('./bridge-api');
-const { wait, iterate } = require('./utils');
-const { cascade } = require('./actions');
-const { LIGHTS, colors } = require('./config');
+const { updateLight, updateGroup } = require('../lib/bridge-api');
+const { wait, iterate } = require('../lib/utils');
+const { cascade } = require('../lib/actions');
+const { LIGHTS, colors } = require('../config');
 
 const { magenta, coolWhite, warmWhite, baseBlue } = colors;
 

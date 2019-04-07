@@ -1,4 +1,4 @@
-const { updateGroup } = require('./bridge-api');
+const { updateGroup } = require('../lib/bridge-api');
 
 (async function(){
   try {

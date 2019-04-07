@@ -1,6 +1,6 @@
-const { updateGroup } = require('./bridge-api');
-const { wait } = require('./utils');
-const { colors } = require('./config');
+const { updateGroup } = require('../lib/bridge-api');
+const { wait } = require('../lib/utils');
+const { colors } = require('../config');
 
 (async function(){
   try {

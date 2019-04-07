@@ -1,3 +1,4 @@
+const path = require('path')
 const child_process = require('child_process');
 const express = require('express');
 const app = express();
@@ -7,15 +8,17 @@ app.use(express.static(__dirname + '/public'));
 let subRoutine = null;
 
 app.get(
-  '/api/routine/:routineId',
+  '/api/routine/:project?/:routineId',
   (req, res, next) => {
     try {
       if(subRoutine){
         subRoutine.kill();
       }
-      subRoutine = child_process.fork(`./${req.params.routineId}`);
-      subRoutine.on('exit', () => console.log(`${req.params.routineId} exited`));
-      console.log(`Started ${req.params.routineId}`);
+      const { project, routineId } = req.params;
+      const routinePath = path.join('.', project, routineId);
+      subRoutine = child_process.fork(routinePath);
+      subRoutine.on('exit', () => console.log(`${routinePath} exited`));
+      console.log(`Started ${routinePath}`);
       res.json({status: 'success'});
     }
     catch(err){

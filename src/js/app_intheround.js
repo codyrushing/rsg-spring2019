@@ -67,35 +67,46 @@ export default class App extends Component {
           <p className="right">{min}:{sec}</p>
         </section>
         <section>
-          <button {...this.isActive('concatenation/phase-1', { resetClock: true })}>Phase 1</button>
+          <button {...this.isActive('phase-0', { resetClock: true })}>Phase 0</button>
+          <p>On. Mid low brightness.</p>
+        </section>
+        <section>
+          <button {...this.isActive('phase-1')}>Phase 1</button>
           <p>
-            <strong>0:00</strong>
-            On mid low white.
+            <strong>0:00 </strong>
+            Fade up to mid high blue
           </p>
         </section>
         <section>
-          <button {...this.isActive('concatenation/phase-2')}>Phase 2</button>
+          <button {...this.isActive('phase-2')}>Phase 2</button>
           <p>
-            <strong>0:10 (at first breath sound)</strong>
-            Flicker lights once, end at medium high brightness
+            <strong>1:04 </strong>
+            Carissa comes to crouch, sizzle sound in music.  Starts 4 second light pulses
           </p>
         </section>
         <section>
-          <button {...this.isActive('concatenation/phase-3')}>Phase 3</button>
+          <button {...this.isActive('phase-3')}>Phase 3</button>
           <p>
-            <strong>8:35 (silence gap in music)</strong>
-            Slow transition to warm white
+            <strong>1:55 </strong>
+            Start routine with accelerating pulses that fade to magenta.
           </p>
         </section>
         <section>
-          <button {...this.isActive('concatenation/phase-4')}>Phase 4</button>
+          <button {...this.isActive('phase-4')}>Phase 4</button>
           <p>
-            <strong>8:45</strong>
-            Start random flickering
+            <strong>4:28 </strong>
+            Em is seated legs in front, Carissa begins solo, music hits low point.  Lights are fully magenta.  Start flashing cycle
           </p>
         </section>
         <section>
-          <button {...this.isActive('lib/turn-off', { stopClock: true })}>Turn off</button>
+          <button {...this.isActive('phase-5')}>Phase 5</button>
+          <p>
+            <strong>6:34 </strong>
+            Music dies down, Em exits.  Back to low blue
+          </p>
+        </section>
+        <section>
+          <button {...this.isActive('phase-off', { stopClock: true })}>Phase off</button>
         </section>
 
       </main>

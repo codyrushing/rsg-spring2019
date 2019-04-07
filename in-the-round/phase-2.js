@@ -1,6 +1,6 @@
-const { updateGroup } = require('./bridge-api');
-const { iterate } = require('./utils');
-const { pulseGroupLowToHigh } = require('./actions');
+const { updateGroup } = require('../lib/bridge-api');
+const { iterate } = require('../lib/utils');
+const { pulseGroupLowToHigh } = require('../lib/actions');
 
 (async function(){
   try {
