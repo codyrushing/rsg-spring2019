@@ -67,10 +67,13 @@ export default class App extends Component {
           <p className="right">{min}:{sec}</p>
         </section>
         <section>
+          <p>Dancers enter in darkness</p>
+        </section>
+        <section>
           <button {...this.isActive('concatenation/phase-1', { resetClock: true })}>Phase 1</button>
           <p>
             <strong>0:00</strong>
-            On mid low white.
+            Once in place, turn lights on mid low white.
           </p>
         </section>
         <section>
@@ -84,7 +87,7 @@ export default class App extends Component {
           <button {...this.isActive('concatenation/phase-3')}>Phase 3</button>
           <p>
             <strong>8:35 (silence gap in music)</strong>
-            Slow transition to warm white
+            After hopscotch series.  Dancers together near front of stage.  Slow transition to warm white
           </p>
         </section>
         <section>
@@ -92,6 +95,13 @@ export default class App extends Component {
           <p>
             <strong>8:45</strong>
             Start random flickering
+          </p>
+        </section>
+        <section>
+          <button {...this.isActive('concatenation/phase-5')}>Phase 5</button>
+          <p>
+            <strong>Very end - after arm circle under light</strong>
+            Slow fade down to minimum brightness, then off
           </p>
         </section>
         <section>
